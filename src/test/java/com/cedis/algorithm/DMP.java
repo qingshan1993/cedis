@@ -27,23 +27,18 @@ public class DMP {
      * @param pattern 模式串
      * @return
      */
-    private static int[] getPartialMatchTable(String pattern) {
-        int len = pattern.length();
-        for (int j=1;j<len; j++) {
-            String a = pattern.substring(0, j);
-            String b = pattern.substring(len-j, len);
-            if (a.equals(b)) {
-                System.out.println(j);
+    public static int[] getPartialMatchTable(String pattern) {
+        int[] pmt = new int[pattern.length()];
+        for (int i=2; i<=pattern.length(); i++) {
+            for (int j=1;j<i; j++) {
+                String a = pattern.substring(0, j);
+                String b = pattern.substring(i-j, i);
+                if (a.equals(b)) {
+                    pmt[i-1] = j;
+                }
             }
-
-
         }
-
-
-
-
-
-
-        return null;
+        return pmt;
     }
+    
  }
