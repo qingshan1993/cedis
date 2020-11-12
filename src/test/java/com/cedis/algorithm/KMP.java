@@ -24,8 +24,6 @@ public class KMP {
 
     /**
      * 获取next数组
-     * <p>
-     * <p>
      * ABABABABC
      * ABABABC
      *
@@ -47,6 +45,23 @@ public class KMP {
     }
 
     /**
+     * 获取next数组 (双指针)
+     *
+     * ABABABC
+     * @param pattern 模式串
+     * @return
+     */
+    public static int[] getPartialMatchTable2(String pattern) {
+        int[] pmt = new int[pattern.length()];
+        for (int i = 2; i <= pattern.length(); i++) {
+            for (int j = 1; j < i; j++) {
+
+            }
+        }
+        return pmt;
+    }
+
+    /**
      * 0 1 2 3 4 5 6 7 8
      * A B A B A B A B A B C
      *         A B A B A B C          => [0, 0, 1, 2, 3, 4, 5]
@@ -58,20 +73,31 @@ public class KMP {
         int[] pmt = getPartialMatchTable(pattern);
         int m=0;
         for (int i = 0; i < pattern.length(); i++) {
+            if (i+m >= src.length()) {
+                return -1;
+            }
             char pc = pattern.charAt(i);
             char sc = src.charAt(i + m);
             if (pc != sc) {
                 m += i-pmt[i-1];
                 i=-1;
+                if (m + pattern.length() > src.length()) {
+                    return -1;
+                }
             }
         }
         return m;
     }
 
-
+    /**
+     * ABABABABAABBC
+     *       ABAABD
+     * 001120
+     */
     @Test
     public void KMPTest() {
-        int kmp = KMP("ABABABC", "ABABABABABC");
+        //int kmp = KMP("ABABABC", "ABABABABABC");
+        int kmp = KMP("ABAABD", "ABABABABAABBC");
         System.out.println("KMP:" + kmp);
     }
 
