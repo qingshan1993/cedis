@@ -53,9 +53,14 @@ public class KMP {
      */
     public static int[] getPartialMatchTable2(String pattern) {
         int[] pmt = new int[pattern.length()];
-        for (int i = 2; i <= pattern.length(); i++) {
-            for (int j = 1; j < i; j++) {
-
+        for (int i = 0; i <= pattern.length(); i++) {
+            for (int j = 1; j <= pattern.length(); j++) {
+                if (pattern.charAt(i) == pattern.charAt(j)) {
+                    i++;
+                    j++;
+                }else {
+                    j++;
+                }
             }
         }
         return pmt;
