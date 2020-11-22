@@ -46,25 +46,48 @@ public class KMP {
 
     /**
      * 获取next数组 (双指针)
-     *
-     * ABABABC
+     * ABAABDA
      * @param pattern 模式串
      * @return
      */
     public static int[] getPartialMatchTable2(String pattern) {
+        //  ABAABDA
         int[] pmt = new int[pattern.length()];
-        for (int i = 0; i <= pattern.length(); i++) {
-            for (int j = 1; j <= pattern.length(); j++) {
-                if (pattern.charAt(i) == pattern.charAt(j)) {
-                    i++;
-                    j++;
-                }else {
+        int j =1;
+        int i=0;
+        boolean match= false;
+        for (; i<pattern.length()-1;) {
+            char c = pattern.charAt(i);
+            char c1 = pattern.charAt(j);
+            if (c == c1) {
+                i++;
+                match=true;
+                pmt[j]=i;
+                j++;
+            }else {
+                i=0;
+                if (!match) {
+                    match=false;
                     j++;
                 }
             }
+
         }
+
         return pmt;
     }
+
+    @Test
+    public void getPartialMatchTable2Test() {
+        String s1 = "ABABDABD";
+        String s2 = "ABAABD";
+        String s3 = "ABABABC";
+        String s4 = "ABABDABABC";
+        int[] array = getPartialMatchTable2(s2);
+        System.out.println(Arrays.toString(array));
+
+    }
+
 
     /**
      * 0 1 2 3 4 5 6 7 8
