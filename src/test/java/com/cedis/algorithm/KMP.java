@@ -46,12 +46,13 @@ public class KMP {
 
     /**
      * 获取next数组 (双指针)
-     * ABAABDA
+     * ABACD ABAB ACE
+     * ABCACDD ABCAB C ACE
      * @param pattern 模式串
      * @return
      */
     public static int[] getPartialMatchTable2(String pattern) {
-        //  ABAABDA
+        //  ABACD ABABACE
         int[] pmt = new int[pattern.length()];
         int j =1;
         int i=0;
@@ -83,6 +84,7 @@ public class KMP {
         String s2 = "ABAABD";
         String s3 = "ABABABC";
         String s4 = "ABABDABABC";
+        String s5 = "ABACDABABACE";
         int[] array = getPartialMatchTable2(s2);
         System.out.println(Arrays.toString(array));
 
