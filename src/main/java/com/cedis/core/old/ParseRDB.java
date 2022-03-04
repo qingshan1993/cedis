@@ -2,7 +2,7 @@
  * Copyright (c) 2013 Sohu TV
  * All rights reserved.
  */
-package com.cedis.core.rdb;
+package com.cedis.core.old;
 
 import java.io.*;
 import java.nio.ByteBuffer;

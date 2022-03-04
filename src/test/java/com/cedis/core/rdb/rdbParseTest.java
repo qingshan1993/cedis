@@ -1,5 +1,6 @@
 package com.cedis.core.rdb;
 
+import com.cedis.core.old.ParseRDB;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
