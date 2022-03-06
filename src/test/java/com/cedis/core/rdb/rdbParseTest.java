@@ -1,5 +1,6 @@
 package com.cedis.core.rdb;
 
+import com.cedis.constant.RDBConstant;
 import com.cedis.core.old.ParseRDB;
 import org.junit.jupiter.api.Test;
 
@@ -9,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.RandomAccessFile;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
+import java.nio.IntBuffer;
 import java.nio.channels.FileChannel;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -24,46 +26,32 @@ public class rdbParseTest {
 
 
     @Test
-    public void rdbParse() {
-        final AtomicInteger count = new AtomicInteger();
+    public void rdbParse() throws FileNotFoundException {
+
         String filePath = "D:\\dump.rdb";
+        FileChannel fileChannel = new RandomAccessFile(filePath, "r").getChannel();
+        IntBuffer intBuffer = IntBuffer.allocate(1024);
+        //fileChannel.read(intBuffer);
 
-        ParseRDB rdb = new ParseRDB();
-        rdb.init(new File(filePath));
-        ParseRDB.Entry entry = rdb.next();
-
-        while(entry!=null){
-            count.incrementAndGet();
-            entry = rdb.next();
-        }
-        rdb.close();
     }
 
     @Test
     public void rdbReadTest() throws Exception {
         String filePath = "D:\\dump.rdb";
-        //Parser parser = new Parser();
-        ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
-        FileChannel channel = new RandomAccessFile(filePath,"r").getChannel();
-        //byteBuffer.limit(2);
-        int read = channel.read(byteBuffer);
+        Parser parser = new Parser(filePath, 1024);
+        parser.read();
+        parser.verifyStringEqual(5, "REDIS");
+        parser.verifyStringEqual(4, "0008");
 
-        if (read != -1) {
-            byte[] result = new byte[5];
-            byte[] array = byteBuffer.get(result, 0, 5).array();
-            System.out.println("result:" + new String(array));
-            byte[] result1 = new byte[8];
-            byteBuffer.get(result1, 0, 8);
-            System.out.println("result1:" + new String(result1));
-        }
 
-//        while (channel.read(allocate) != -1) {
-//            long position = channel.position();
-//            allocate.limit()
-//            allocate.clear();
-//            byte[] array = allocate.array();
-//            System.out.println("result:" + new String(array));
-//            System.out.println("position:" + position);
-//        }
+        parser.close();
+    }
+
+    @Test
+    public void rdbReadTest1() throws Exception {
+
+        boolean result= RDBConstant.RDB_OPCODE_AUX == (11);
+        //-5 & 0xff
+        System.out.println(result);
     }
 }
