@@ -4,12 +4,10 @@ import com.cedis.constant.RDBConstant;
 import com.cedis.core.old.ParseRDB;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.RandomAccessFile;
+import java.io.*;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
 import java.nio.IntBuffer;
 import java.nio.channels.FileChannel;
 import java.util.Random;
@@ -26,19 +24,24 @@ public class rdbParseTest {
 
 
     @Test
-    public void rdbParse() throws FileNotFoundException {
+    public void rdbParse() throws IOException {
 
         String filePath = "D:\\dump.rdb";
         FileChannel fileChannel = new RandomAccessFile(filePath, "r").getChannel();
-        IntBuffer intBuffer = IntBuffer.allocate(1024);
-        //fileChannel.read(intBuffer);
+        ByteBuffer allocate = ByteBuffer.allocate(1024);
+
+        fileChannel.read(allocate);
+        CharBuffer charBuffer1 = allocate.asCharBuffer().asReadOnlyBuffer();
+        char[] array = charBuffer1.array();
+        System.out.println(charBuffer1);
+        fileChannel.close();
 
     }
 
     @Test
     public void rdbReadTest() throws Exception {
         String filePath = "D:\\dump.rdb";
-        Parser parser = new Parser(filePath, 1024);
+        DefaultParser parser = new DefaultParser(filePath, 1024);
         parser.read();
         parser.verifyStringEqual(5, "REDIS");
         parser.verifyStringEqual(4, "0008");
@@ -49,6 +52,7 @@ public class rdbParseTest {
 
     @Test
     public void rdbReadTest1() throws Exception {
+        char xx = '\0';
 
         boolean result= RDBConstant.RDB_OPCODE_AUX == (11);
         //-5 & 0xff

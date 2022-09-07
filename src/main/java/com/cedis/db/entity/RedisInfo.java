@@ -6,20 +6,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
  * @author jjq
  * @version 1.0
- * @date 2020/8/23
+ * @date 2022/9/5
  * @desc
  */
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class RedisInfo {
+public class RedisInfo implements Serializable {
 
     private Integer id;
 
