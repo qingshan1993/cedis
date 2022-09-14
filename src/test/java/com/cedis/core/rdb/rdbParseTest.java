@@ -18,6 +18,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @version 1.0
  * @date 2020/8/16
  * @desc rdb 文件解析测试
+ * http://rdb.fnordig.de/file_format.html
  */
 public class rdbParseTest {
 

@@ -1,5 +1,7 @@
 package com.cedis.core.rdb;
 
+import com.cedis.exception.ParseException;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -14,7 +16,7 @@ import java.nio.charset.StandardCharsets;
  * @date 2022/9/7
  * @desc
  */
-public class DefaultParser implements Parser {
+public class DefaultParser {
 
     private String filePath;
 
@@ -109,7 +111,7 @@ public class DefaultParser implements Parser {
     /**
      * close fileChannel
      */
-    @Override
+    //@Override
     public void  close() {
         try {
             this.fileChannel.close();

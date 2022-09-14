@@ -1,4 +1,4 @@
-package com.cedis.core.rdb;
+package com.cedis.exception;
 
 /**
  * @author jjq
