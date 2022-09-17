@@ -6,7 +6,7 @@ package com.cedis.constant;
  * @date 2022/3/6
  * @desc RDB 文件常量 参考redis/src/rdb.h
  */
-public interface RDBConstant {
+public interface RdbConstant {
 
 
     /** RDB文件的特殊操作符(opcode)*/

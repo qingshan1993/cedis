@@ -1,5 +1,6 @@
-package com.cedis.core.rdb;
+package com.cedis.core.rdb.parser;
 
+import com.cedis.core.rdb.RDBInfo;
 import com.cedis.exception.ParseException;
 
 import java.io.FileNotFoundException;

@@ -11,11 +11,19 @@ public class CedisApplication {
 
     public static void main(String[] args) throws IOException {
         SpringApplication.run(CedisApplication.class, args);
-        if (args[0].equals("lzf-test")) {
+        //lzf test
+        if (args != null && args[0].equals("lzf-test")) {
             LZFTest lzfTest = new LZFTest();
             lzfTest.compress(args[1]);
         }
     }
+
+    /**
+     * ref doc
+     * 1.http://rdb.fnordig.de/file_format.html#length-encoding
+     */
+
+
 
 
 
