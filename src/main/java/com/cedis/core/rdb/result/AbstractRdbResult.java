@@ -11,11 +11,11 @@ import java.util.List;
 public abstract class AbstractRdbResult implements RdbResult {
 
     @Override
-    public String getVersion() {
-        return null;
+    public int getVersion() {
+        return 0;
     }
 
-    @Override
+
     public String setVersion() {
         return null;
     }

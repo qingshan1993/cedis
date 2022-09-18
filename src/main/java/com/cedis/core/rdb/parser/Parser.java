@@ -2,6 +2,9 @@ package com.cedis.core.rdb.parser;
 
 import com.cedis.core.rdb.result.RdbResult;
 
+import java.nio.ByteBuffer;
+import java.nio.channels.ReadableByteChannel;
+
 /**
  * @author qingshan1993
  * @version 1.0
@@ -10,26 +13,15 @@ import com.cedis.core.rdb.result.RdbResult;
  */
 public interface Parser extends AutoCloseable {
 
-    void checkMagic();
-
-    String readVersion();
-
+    /**
+     * 读取整个rdb文件，除了魔数和rdb的版本
+     * read rdb file left except magic and rdb version
+     * @return
+     */
     RdbResult readComplete();
 
-    void checkSum();
+    void setFileSource(ReadableByteChannel ch, ByteBuffer buf);
 
-    void setRdbResource();
-
-    void setRdbResult();
-
-    void getRdbResult();
-
-
-
-
-
-
-
-
+    void setRdbResult(RdbResult rdbResult);
 
 }

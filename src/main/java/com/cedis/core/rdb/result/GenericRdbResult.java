@@ -6,5 +6,19 @@ package com.cedis.core.rdb.result;
  * @date 2022/9/17
  * @desc todo
  */
-public class GenericRdbResult {
+public class GenericRdbResult extends AbstractRdbResult {
+    @Override
+    public void setMagic(String magic) {
+
+    }
+
+    @Override
+    public String getMagic() {
+        return null;
+    }
+
+    @Override
+    public void setVersion(int rdbVer) {
+
+    }
 }

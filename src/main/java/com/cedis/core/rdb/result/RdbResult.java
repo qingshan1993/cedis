@@ -23,16 +23,16 @@ public interface RdbResult {
     String getMagic();
 
     /**
-     * 获取版本号
+     * 获取rdb文件的版本号
      * @return
      */
-    String getVersion();
+    int getVersion();
 
     /**
      * 获取
      * @return
      */
-    String setVersion();
+    void setVersion(int rdbVer);
 
     List<Entry> getResult();
 

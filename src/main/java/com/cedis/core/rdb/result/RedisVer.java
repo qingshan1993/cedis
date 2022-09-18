@@ -10,6 +10,8 @@ public class RedisVer implements Entry {
 
     private String version;
 
+    private byte[] value;
+
     public String get(){
         return this.version;
     }
@@ -21,6 +23,6 @@ public class RedisVer implements Entry {
 
     @Override
     public String toString() {
-        return EntryType.REDIS_VER.getDefaultKey() +": " + this.version;
+        return EntryType.REDIS_VER.getDefaultKey() + ": " + this.version;
     }
 }
