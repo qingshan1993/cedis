@@ -88,7 +88,6 @@ public abstract class AbstractRdbParser implements Parser {
                 return readBytes(len);
             case 2:// 10|xxxxxx 舍弃剩余的6bit，长度是接下来的4个字节
                 // 10|000000: len is a 32-bit integer encoded on the next 4 bytes.
-
                 byte[] bs = readBytes(4);
                 len = ((int)bs[0] & 0xff) << 24
                         | ((int)bs[1] & 0xff) << 16
